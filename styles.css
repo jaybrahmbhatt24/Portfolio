@@ -31,21 +31,24 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.6;
   scroll-behavior: smooth;
 }
 
 img { max-width: 100%; display: block; }
 
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.reveal-in { opacity: 1; transform: translateY(0); }
+
 .container {
   width: min(1120px, 92%);
   margin: 0 auto;
 }
 
-.section { padding: 72px 0; }
+.section { padding: 84px 0; }
 .section.alt { background: var(--bg-alt); }
-.section h2 { margin: 0 0 16px; font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem); }
+.section h2 { margin: 0 0 16px; font-size: clamp(1.8rem, 2vw + 1rem, 2.4rem); letter-spacing: -0.02em; }
 .section .section-intro { margin: 0 0 32px; color: var(--muted); }
 
 /* Header */
@@ -66,20 +69,24 @@ img { max-width: 100%; display: block; }
 .theme-toggle { margin-left: 12px; width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; }
 
 /* Hero */
-.hero { padding: 96px 0 64px; }
+.hero { padding: 120px 0 84px; position: relative; overflow: hidden; }
 .hero-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
 .eyebrow { letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-size: .85rem; margin: 0 0 8px; }
-.hero h1 { margin: 0 0 8px; font-size: clamp(2rem, 4vw + 1rem, 3rem); }
+.hero h1 { margin: 0 0 8px; font-size: clamp(2.2rem, 4vw + 1rem, 3.4rem); letter-spacing: -0.02em; }
 .subtitle { color: var(--muted); margin: 0 0 16px; font-weight: 600; }
 .summary { margin: 0 0 24px; color: var(--muted); }
 .hero-actions { display: flex; gap: 12px; margin-bottom: 16px; }
 .social-links { display: flex; gap: 10px; }
-.social-links a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); color: var(--text); text-decoration: none; background: var(--card); }
+.social-links a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); text-decoration: none; background: color-mix(in oklab, var(--card) 85%, transparent); backdrop-filter: blur(6px); transition: transform .2s ease, background .2s ease; }
+.social-links a:hover { transform: translateY(-2px); background: var(--card); }
 .hero-art { position: relative; height: 280px; }
-.blob { position: absolute; inset: 0; background: radial-gradient(120% 120% at 80% 20%, color-mix(in oklab, var(--primary) 60%, transparent), transparent), radial-gradient(120% 120% at 20% 80%, color-mix(in oklab, #22c55e 30%, transparent), transparent); border-radius: 24px; filter: blur(4px) saturate(120%); box-shadow: var(--shadow); }
+.blob { position: absolute; inset: 0; background: radial-gradient(120% 120% at 80% 20%, color-mix(in oklab, var(--primary) 60%, transparent), transparent), radial-gradient(120% 120% at 20% 80%, color-mix(in oklab, #22c55e 30%, transparent), transparent); border-radius: 24px; filter: blur(6px) saturate(120%); box-shadow: var(--shadow); animation: float 10s ease-in-out infinite; }
+.gradient-text { background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 90%, #8b5cf6 20%), #22c55e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* Cards */
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); }
+.card { background: color-mix(in oklab, var(--card) 90%, transparent); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; backdrop-filter: blur(6px); }
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.25); border-color: color-mix(in oklab, var(--primary) 30%, var(--border)); }
 .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
 .card p { margin: 6px 0; color: var(--muted); }
 .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
@@ -93,7 +100,8 @@ img { max-width: 100%; display: block; }
 .project-card .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .tag { padding: 4px 8px; font-size: .85rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
 .project-links { display: flex; gap: 10px; margin-top: 12px; }
-.project-links a { text-decoration: none; border: 1px solid var(--border); color: var(--text); padding: 8px 10px; border-radius: 8px; background: var(--card); }
+.project-links a { text-decoration: none; border: 1px solid var(--border); color: var(--text); padding: 8px 10px; border-radius: 10px; background: color-mix(in oklab, var(--card) 85%, transparent); transition: transform .2s ease, background .2s ease; }
+.project-links a:hover { transform: translateY(-2px); background: var(--card); }
 
 /* Experience */
 .timeline { position: relative; margin-left: 8px; }
@@ -110,9 +118,9 @@ img { max-width: 100%; display: block; }
 .contact-actions { margin-top: 14px; display: flex; gap: 12px; }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); background: var(--card); text-decoration: none; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); color: var(--text); background: color-mix(in oklab, var(--card) 85%, transparent); text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
 .btn.primary { background: var(--primary); border-color: var(--primary); color: var(--primary-contrast); }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.2); }
 
 /* Footer */
 .site-footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg); }

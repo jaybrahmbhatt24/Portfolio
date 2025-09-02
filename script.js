@@ -238,5 +238,37 @@ document.addEventListener('DOMContentLoaded', () => {
   setupTheme();
   setupNav();
   setupSmoothScroll();
+  setupScrollReveal();
+  syncMetaThemeColor();
 });
+
+function syncMetaThemeColor() {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const apply = () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    meta.setAttribute('content', isDark ? '#0b0c10' : '#ffffff');
+  };
+  apply();
+  const orig = document.documentElement.setAttribute.bind(document.documentElement);
+  document.documentElement.setAttribute = function(name, value) {
+    orig(name, value);
+    if (name === 'data-theme') apply();
+  };
+}
+
+function setupScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.card, .timeline-item, .hero-text').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
 
