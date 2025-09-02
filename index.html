@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Your Name — Portfolio</title>
+    <meta name="description" content="Portfolio website of Your Name: education, projects, experience, and contact." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a class="brand" href="#home" aria-label="Go to homepage">Your Name</a>
+        <nav class="site-nav" aria-label="Primary">
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <ul id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="assets/resume.pdf" download>Resume</a></li>
+          </ul>
+        </nav>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <main id="home" class="section hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Hello, I'm</p>
+          <h1 id="profileName">Your Name</h1>
+          <p id="profileRole" class="subtitle">Student / Developer</p>
+          <p id="profileSummary" class="summary">Brief summary about you goes here.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="assets/resume.pdf" download>Download Resume</a>
+          </div>
+          <div id="socialLinks" class="social-links" aria-label="Social links"></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="blob"></div>
+        </div>
+      </div>
+    </main>
+
+    <section id="education" class="section">
+      <div class="container">
+        <h2>Education & Academic Records</h2>
+        <p class="section-intro">Includes results of 10, 12, and college.</p>
+        <div id="educationList" class="edu-grid"></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section alt">
+      <div class="container">
+        <h2>Projects Portfolio Showcase</h2>
+        <div id="projectsList" class="project-grid"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Professional Experience Timeline</h2>
+        <div id="experienceTimeline" class="timeline"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="container">
+        <h2>Contact & Resume</h2>
+        <div id="contactDetails" class="contact-grid"></div>
+        <div class="contact-actions">
+          <a class="btn primary" href="assets/resume.pdf" download>Download Resume</a>
+          <a class="btn" id="emailMe" href="#">Email Me</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p id="footerCredit">© <span id="footerYear"></span> Your Name. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <noscript>
+      Please enable JavaScript to view dynamic content like education, projects, and experience.
+    </noscript>
+    <script src="./script.js" defer></script>
+  </body>
+  </html>
+
