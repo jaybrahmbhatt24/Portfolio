@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt Engineer Agent</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Prompt Engineer Agent</h1>
+      <div class="model-select">
+        <label for="model">Model</label>
+        <select id="model"></select>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="form-card">
+        <h2>Prompt Brief</h2>
+        <div class="grid two">
+          <div class="field">
+            <label for="goal">Objective / Goal</label>
+            <textarea id="goal" rows="3" placeholder="Describe what you want the LLM to accomplish"></textarea>
+          </div>
+          <div class="field">
+            <label for="audience">Target Audience</label>
+            <input id="audience" type="text" placeholder="e.g., Product managers, high-school students">
+          </div>
+        </div>
+
+        <div class="grid three">
+          <div class="field">
+            <label for="tone">Tone</label>
+            <input id="tone" type="text" placeholder="e.g., Professional, friendly, authoritative">
+          </div>
+          <div class="field">
+            <label for="style">Style</label>
+            <input id="style" type="text" placeholder="e.g., Concise bullets, narrative, technical">
+          </div>
+          <div class="field">
+            <label for="length">Length</label>
+            <input id="length" type="text" placeholder="e.g., ~400 words, 6 bullets">
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="field">
+            <label for="output_format">Output Format</label>
+            <input id="output_format" type="text" placeholder="e.g., Markdown with headings; JSON schema; table">
+          </div>
+          <div class="field">
+            <label for="keywords">Keywords / Key points</label>
+            <input id="keywords" type="text" placeholder="Comma-separated items to include">
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="field">
+            <label for="constraints">Constraints & Must-haves</label>
+            <textarea id="constraints" rows="2" placeholder="Non-negotiables, compliance, references"></textarea>
+          </div>
+          <div class="field">
+            <label for="language">Language</label>
+            <input id="language" type="text" value="English">
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="field">
+            <label for="context">Additional Context</label>
+            <textarea id="context" rows="3" placeholder="Background, audience knowledge level, product details, etc."></textarea>
+          </div>
+          <div class="field">
+            <label for="examples">Few-shot Examples</label>
+            <textarea id="examples" rows="3" placeholder="Provide examples of desired/undesired outputs"></textarea>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="field">
+            <label for="creativity">Creativity (temperature)</label>
+            <input id="creativity" type="range" min="0" max="1.5" step="0.1" value="0.3">
+          </div>
+          <div class="actions">
+            <button id="generate" class="primary">Generate Optimized Prompt</button>
+            <button id="clear" class="ghost">Clear</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="output-card">
+        <div class="output-header">
+          <h2>Optimized Prompt</h2>
+          <div class="output-actions">
+            <button id="copy" class="ghost">Copy</button>
+            <div class="use-menu">
+              <button class="ghost">Use this prompt ▾</button>
+              <div class="dropdown" id="use-menu">
+                <button data-target="chatgpt">Open in ChatGPT</button>
+                <button data-target="blackbox">Open in Blackbox</button>
+                <button data-target="perplexity">Open in Perplexity</button>
+                <button data-target="gemini">Open in Gemini</button>
+                <button data-target="grok">Open in Grok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <pre id="output" class="output"></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Built with Flask + Ollama</span>
+      <a href="https://github.com/ollama/ollama" target="_blank" rel="noreferrer">Ollama</a>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+  </html>
+

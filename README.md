@@ -1,41 +1,39 @@
-# Portfolio (HTML/CSS/JS)
+# Prompt Engineer Agent (Flask + Ollama)
 
-A clean, responsive personal portfolio that showcases your Education (10, 12, and College), Projects, Professional Experience (internships), and Contact with Resume download.
+Build and stream optimized, structured prompts based on a detailed brief (goal, audience, tone, style, format, constraints, etc.). Includes quick-use links for ChatGPT, Blackbox, Perplexity, Gemini, and Grok.
 
-## Quick Start
+## Prerequisites
+- Python 3.10+
+- [Ollama](https://ollama.com) running locally (`ollama serve`) and at least one model pulled (e.g., `ollama pull llama3.1`)
 
-1. Open `index.html` in your browser.
-2. Edit content in `script.js` under the `portfolioData` object.
-3. Replace `assets/resume.pdf` with your actual PDF resume (use the same filename).
+## Setup
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+export OLLAMA_HOST="http://localhost:11434"
+python app.py
+```
 
-## Where to edit your info
+Open [http://localhost:5000](http://localhost:5000) in your browser.
 
-- `script.js` → `portfolioData`
-  - `profile`: name, role, summary, social links
-  - `education`: add/update Class 10, Class 12, College
-  - `projects`: title, description, tech, links
-  - `experience`: internships/professional roles with period and highlights
-  - `contact`: email, phone, location, `resumeUrl`
+## How it works
+- Frontend collects: goal, audience, tone, style, output format, length, keywords, constraints, language, context, and few-shot examples.
+- Backend composes a prompt-engineering instruction for the LLM and streams a single optimized prompt back via Ollama’s `generate` API.
+- Use the dropdown to open the generated prompt directly in:
+  - ChatGPT
+  - Blackbox
+  - Perplexity
+  - Gemini
+  - Grok
 
-## Customize styles
+## File structure
+- `app.py` — Flask server, `/api/models` and `/api/generate`
+- `templates/index.html` — UI form and output layout
+- `static/styles.css` — Styling and responsive layout
+- `static/app.js` — Fetch models, stream generation, share menu
+- `requirements.txt` — Dependencies
 
-Edit colors, spacing, and layout in `styles.css`. Dark/Light theme is built-in and persisted via `localStorage`.
-
-## Deploy
-
-- GitHub Pages
-  1. Push this folder to a GitHub repository
-  2. In repo Settings → Pages → Deploy from branch → `main` and `/ (root)`
-  3. Wait a minute; your site will be live at `https://<your-username>.github.io/<repo>/`
-
-- Netlify (drag & drop)
-  1. Go to `https://app.netlify.com/drop`
-  2. Drag this project folder; Netlify will deploy it
-
-## Notes
-
-- The navigation is mobile-friendly with a hamburger menu.
-- Smooth scrolling and theme toggle are enabled.
-- No backend is required. Everything is static.
-
-# Portfolio
+## Troubleshooting
+- If `/api/models` fails, ensure Ollama is running and `OLLAMA_HOST` is set correctly.
+- If generation streams errors, verify the model name exists in `ollama list`.
